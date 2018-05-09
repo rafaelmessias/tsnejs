@@ -367,9 +367,11 @@ var tsnejs = tsnejs || { REVISION: 'ALPHA' };
 // export the library to window, or to module in nodejs
 (function(lib) {
   "use strict";
-  if (typeof module === "undefined" || typeof module.exports === "undefined") {
-    window.tsnejs = lib; // in ordinary browser attach library to window
-  } else {
-    module.exports = lib; // in nodejs
+  if (typeof window !== "undefined") {
+    if (typeof module === "undefined" || typeof module.exports === "undefined") {
+      window.tsnejs = lib; // in ordinary browser attach library to window
+    } else {
+      module.exports = lib; // in nodejs
+    }
   }
 })(tsnejs);
